@@ -1,15 +1,14 @@
 <?php
 
-namespace TwoFactorAuth\tests;
+namespace kashefphp\TwoFactorAuth;
 
 use App\Models\User;
-use Tests\TestCase;
-use TwoFactorAuth\Facades\AuthFacade;
-use TwoFactorAuth\Facades\TokenGeneratorFacade;
-use TwoFactorAuth\Facades\TokenSenderFacade;
-use TwoFactorAuth\Facades\TokenStoreFacade;
-use TwoFactorAuth\Facades\UserProviderFacade;
-use TwoFactorAuth\Http\ResponderFacade;
+use kashefphp\TwoFactorAuth\Facades\AuthFacade;
+use kashefphp\TwoFactorAuth\Facades\TokenGeneratorFacade;
+use kashefphp\TwoFactorAuth\Facades\TokenSenderFacade;
+use kashefphp\TwoFactorAuth\Facades\TokenStoreFacade;
+use kashefphp\TwoFactorAuth\Facades\UserProviderFacade;
+use kashefphp\TwoFactorAuth\src\Http\ResponderFacade;
 
 class TwoFactorAuthTokenTest extends TestCase
 {

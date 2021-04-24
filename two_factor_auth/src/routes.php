@@ -1,8 +1,8 @@
 <?php
 
 use App\Models\User;
-use TwoFactorAuth\TokenStore\TokenStore\TokenGenerators\TokenGenerators\Facades\TokenSenderFacade;
-use TwoFactorAuth\TokenStore\TokenStore\TokenGenerators\TokenGenerators\Facades\TokenStoreFacade;
+use kashefphp\TwoFactorAuth\TokenStore\TokenGenerators\Facades\TokenSenderFacade;
+use kashefphp\TwoFactorAuth\TokenStore\TokenGenerators\Facades\TokenStoreFacade;
 
 
 Route::get('/two-factor-auth/request-token',

@@ -1,21 +1,21 @@
 <?php
 
 
-namespace TwoFactorAuth;
+namespace kashefphp\TwoFactorAuth;
 
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
-use TwoFactorAuth\Authenticator\SessionAuth;
-use TwoFactorAuth\Facades\AuthFacade;
-use TwoFactorAuth\Facades\TokenGeneratorFacade;
-use TwoFactorAuth\Facades\TokenSenderFacade;
-use TwoFactorAuth\Facades\TokenStoreFacade;
-use TwoFactorAuth\Facades\UserProviderFacade;
-use TwoFactorAuth\TokenGenerators\FakeTokenGenerator;
-use TwoFactorAuth\TokenGenerators\TokenGenerator;
-use TwoFactorAuth\TokenStore\FakeTokenStore;
-use TwoFactorAuth\TokenStore\TokenStore;
+use kashefphp\TwoFactorAuth\Authenticator\SessionAuth;
+use kashefphp\TwoFactorAuth\Facades\AuthFacade;
+use kashefphp\TwoFactorAuth\Facades\TokenGeneratorFacade;
+use kashefphp\TwoFactorAuth\Facades\TokenSenderFacade;
+use kashefphp\TwoFactorAuth\Facades\TokenStoreFacade;
+use kashefphp\TwoFactorAuth\Facades\UserProviderFacade;
+use kashefphp\TwoFactorAuth\TokenGenerators\FakeTokenGenerator;
+use kashefphp\TwoFactorAuth\TokenGenerators\TokenGenerator;
+use kashefphp\TwoFactorAuth\TokenStore\FakeTokenStore;
+use kashefphp\TwoFactorAuth\TokenStore\TokenStore;
 
 
 class TwoFactorAuthServiceProvider extends ServiceProvider

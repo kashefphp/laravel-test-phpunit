@@ -1,7 +1,7 @@
 <?php
 
 
-namespace TwoFactorAuth\TokenGenerators;
+namespace kashefphp\TwoFactorAuth\TokenGenerators;
 
 
 class FakeTokenGenerator

@@ -1,7 +1,7 @@
 <?php
 
 
-namespace TwoFactorAuth\Authenticator;
+namespace kashefphp\TwoFactorAuth\Authenticator;
 
 
 use Illuminate\Support\Facades\Auth;

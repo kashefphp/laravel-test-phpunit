@@ -1,11 +1,11 @@
 <?php
 
 
-namespace TwoFactorAuth;
+namespace kashefphp\TwoFactorAuth;
 
 
 use Illuminate\Support\Facades\Notification;
-use TwoFactorAuth\TokenStore\TokenStore\TokenGenerators\TokenGenerators\Notifications\LoginTokenNotification;
+use kashefphp\TwoFactorAuth\TokenStore\TokenStore\TokenGenerators\TokenGenerators\Notifications\LoginTokenNotification;
 
 class TokenSender
 {

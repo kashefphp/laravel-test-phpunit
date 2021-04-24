@@ -1,7 +1,7 @@
 <?php
 
 
-namespace TwoFactorAuth;
+namespace kashefphp\TwoFactorAuth;
 
 
 class FakeTokenSender

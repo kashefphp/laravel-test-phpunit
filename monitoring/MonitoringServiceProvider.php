@@ -6,7 +6,7 @@ namespace Monitoring;
 
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\ServiceProvider;
-use TwoFactorAuth\Http\ResponderFacade;
+use TwoFactorAuth\src\Http\ResponderFacade;
 
 class MonitoringServiceProvider extends ServiceProvider
 {

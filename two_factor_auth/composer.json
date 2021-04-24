@@ -1,0 +1,45 @@
+{
+    "name": "testy-packeage-for-tokenize-login",
+    "description": "a minimal description",
+    "keywords": [
+        "laravel",
+        "laravel8-package",
+        "PHP",
+        "laravel8"
+    ],
+    "license": "MIT",
+    "homepage": "https://github.com/kashefphp/laravel-test-phpunit",
+    "authors": [
+        {
+            "name": "Majid Kashefy",
+            "email": "kashefymajid1992@gmail.com"
+        }
+    ],
+    "require": {
+        "php": "^7.1.3|7.2.*|7.3.*|7.4.*|^8.0",
+        "laravel/framework": "~5.1|6.*|7.*|8.*",
+        "imanghafoori/laravel-nullable": "^1.2",
+        "imanghafoori/laravel-smart-facades": "^1.0"
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "kashefphp\\TwoFactorAuthTest\\": "tests"
+        }
+    },
+    "require-dev": {
+        "orchestra/testbench": "~3.0",
+        "mockery/mockery": "^0.9.9"
+    },
+    "autoload": {
+        "psr-4": {
+            "kashefphp\\TwoFactorAuth\\": "src"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "kashefphp\\TwoFactorAuth\\TwoFactorAuthServiceProvider"
+            ]
+        }
+    }
+}

@@ -1,7 +1,7 @@
 <?php
 
 
-namespace TwoFactorAuth\Facades;
+namespace kashefphp\TwoFactorAuth\Facades;
 
 class AuthFacade extends BaseFacade
 {

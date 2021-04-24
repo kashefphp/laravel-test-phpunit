@@ -1,6 +1,6 @@
 <?php
 
-namespace TwoFactorAuth\Notifications;
+namespace kashefphp\TwoFactorAuth\Notifications;
 
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
