@@ -6,12 +6,17 @@ namespace TwoFactorAuth;
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
+use TwoFactorAuth\Authenticator\SessionAuth;
+use TwoFactorAuth\Facades\AuthFacade;
 use TwoFactorAuth\Facades\TokenGeneratorFacade;
+use TwoFactorAuth\Facades\TokenSenderFacade;
 use TwoFactorAuth\Facades\TokenStoreFacade;
 use TwoFactorAuth\Facades\UserProviderFacade;
-use TwoFactorAuth\Http\ResponderFacade;
-use TwoFactorAuth\Http\Responses\AndriodResponses;
-use TwoFactorAuth\Http\Responses\VueResponses;
+use TwoFactorAuth\TokenGenerators\FakeTokenGenerator;
+use TwoFactorAuth\TokenGenerators\TokenGenerator;
+use TwoFactorAuth\TokenStore\FakeTokenStore;
+use TwoFactorAuth\TokenStore\TokenStore;
+
 
 class TwoFactorAuthServiceProvider extends ServiceProvider
 {
@@ -19,14 +24,28 @@ class TwoFactorAuthServiceProvider extends ServiceProvider
 
     public function register()
     {
+        $this->mergeConfigFrom(__DIR__.'/config/two_factor_auth_config.php', 'two_factor_config');
+        AuthFacade::shouldProxyTo(SessionAuth::class);
         UserProviderFacade::shouldProxyTo(UserProvider::class);
-        TokenGeneratorFacade::shouldProxyTo(TokenGenerator::class);
-        TokenStoreFacade::shouldProxyTo(TokenStore::class);
+        if (app()->runningUnitTests()) {
+            $tokenGenerator = FakeTokenGenerator::class;
+            $tokenStore = FakeTokenStore::class;
+            $tokenSender = FakeTokenSender::class;
+        } else {
+            $tokenGenerator = TokenGenerator::class;
+            $tokenStore = TokenStore::class;
+            $tokenSender = TokenSender::class;
+        }
+        TokenGeneratorFacade::shouldProxyTo($tokenGenerator);
+        TokenStoreFacade::shouldProxyTo($tokenStore);
+        TokenSenderFacade::shouldProxyTo($tokenSender);
     }
 
     public function boot()
     {
-        $this->defineRoutes();
+        if (! ($this->app->routesAreCached())) {
+            $this->defineRoutes();
+        }
     }
 
     private function defineRoutes(): void

@@ -4,14 +4,14 @@
 namespace TwoFactorAuth\Http\Controllers;
 
 
-use http\Client\Curl\User;
 use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\Validator;
+use TwoFactorAuth\Facades\AuthFacade;
 use TwoFactorAuth\Facades\TokenGeneratorFacade;
+use TwoFactorAuth\Facades\TokenSenderFacade;
 use TwoFactorAuth\Facades\TokenStoreFacade;
 use TwoFactorAuth\Facades\UserProviderFacade;
 use TwoFactorAuth\Http\ResponderFacade;
-use TwoFactorAuth\TokenGenerator;
-use TwoFactorAuth\TokenStore;
 
 class TokenSenderController extends Controller
 {
@@ -20,8 +20,15 @@ class TokenSenderController extends Controller
     public function issueToken()
     {
         $email= request('email');
+        $this->validateEmailIsValid();
+        $this->checkUserIsGuest();
 
-        $user = UserProviderFacade::getUserByEmail($email);
+        /**
+         * @var \Imanghafoori\Helpers\Nullable $user
+         */
+        $user = UserProviderFacade::getUserByEmail($email)->getOrSend(
+            [ResponderFacade::class, 'userNotFound']
+        );
 
         if (UserProviderFacade::isBanned($user->id)) {
             return ResponderFacade::blockUser();
@@ -30,7 +37,35 @@ class TokenSenderController extends Controller
 
         TokenStoreFacade::saveToken($token, $user->id);
 
+        TokenSenderFacade::send($token, $user);
+
         return ResponderFacade::tokenSend();
+    }
+
+    private function validateEmailIsValid(): void
+    {
+        $obj_val = Validator::make(request()->all(), ['email' => 'email|required']);
+        if ($obj_val->fails()) {
+            ResponderFacade::emailNotValid()->throwResponse();
+        }
+    }
+
+    private function checkUserIsGuest(): void
+    {
+        if (AuthFacade::check()) {
+            ResponderFacade::youShouldBeGuest()->throwResponse();
+        }
+    }
+
+    public function loginWithToken()
+    {
+        $token= request('token');
+        $uid= TokenStoreFacade::getUidByToken($token)->getOrSend(
+            [ResponderFacade::class, 'tokenNotFound']
+        );
+
+        AuthFacade::loginById($uid);
+        return ResponderFacade::loggedIn();
     }
 
 }

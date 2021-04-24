@@ -1,5 +1,8 @@
 <?php
 
+use Monitoring\MonitoringServiceProvider;
+use TwoFactorAuth\TwoFactorAuthServiceProvider;
+
 return [
 
     /*
@@ -174,7 +177,8 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
-        \TwoFactorAuth\TwoFactorAuthServiceProvider::class,
+        TwoFactorAuthServiceProvider::class,
+        MonitoringServiceProvider::class,
 
     ],
 

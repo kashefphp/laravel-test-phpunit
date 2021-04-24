@@ -4,12 +4,16 @@
 namespace TwoFactorAuth\Http;
 
 
-use Illuminate\Support\Facades\Facade;
+use Imanghafoori\SmartFacades\Facade;
 use TwoFactorAuth\Http\Responses\AndriodResponses;
 use TwoFactorAuth\Http\Responses\VueResponses;
 
 class ResponderFacade extends Facade
 {
+
+//    public static function youShouldBeGuest()
+//    {
+//    }
 
     protected static function getFacadeAccessor()
     {

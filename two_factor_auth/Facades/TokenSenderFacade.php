@@ -5,7 +5,7 @@ namespace TwoFactorAuth\Facades;
 
 
 
-class UserProviderFacade extends BaseFacade
+class TokenSenderFacade extends BaseFacade
 {
 
 }

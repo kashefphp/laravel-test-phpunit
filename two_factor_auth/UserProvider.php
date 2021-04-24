@@ -16,7 +16,7 @@ class UserProvider
     public function getUserByEmail($email)
     {
         $user = User::where('email', $email)->first();
-        return $user;
+        return nullable($user);
     }
 
     public function isBanned($uid)
